@@ -1,7 +1,7 @@
 #ifndef LISTA_STRUCT_H
 #define LISTA_STRUCT_H
 
-#define datoArbol int
+#define datoArbol char
 #define tipoDato nodoArbol
 
 struct Lista{
