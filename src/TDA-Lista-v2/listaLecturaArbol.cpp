@@ -44,6 +44,14 @@ void inserta(datosLA x, int p, ListaLA &lista){
 	}
 }
 
+void imprime(ListaLA lista){
+	for(int i = primero(lista) ; i < fin(lista) ; i = siguiente(i, lista)){
+		datosLA x = recupera(i,lista);
+		printf("Pos. hijo izq. [%d] | Etiqueta [%c] | Pos. herm. der. [%d]\n", x.pos_hijo_izq, x.etiqueta, x.pos_herm_der);
+	}
+	printf("*\n");
+}
+
 datosLA recupera(int p, ListaLA lista){
 	nodoLA* aux = lista.primero;
 	for(int i = 1 ; i < p ; i++){

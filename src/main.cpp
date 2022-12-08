@@ -4,6 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define debug true
+
 Arbol crearArbolEjemplo();
 void imprimeListaHijos(Arbol n);
 
@@ -16,13 +18,14 @@ int main(int argc, char *argv[])
     if(argc != 2)
     {
         printf("Argumentos incorrectos.");
-        return 1;
+        return 2;
     }
 
     bool termino = true;
     while (termino)
     {
         FILE * archivo = fopen(argv[1], "a+");
+        int contador_debug = 0;
         printf("\n - - - - - MANEJADOR DE ARBOLES - - - - - \n\n");
         printf("\tSeleccione una opción:\n\n");
         printf("\t\t1. Opción 1\n");
@@ -41,8 +44,15 @@ int main(int argc, char *argv[])
             case 1:
             {
                 Arbol arbol1;
+                //debug
+                if(debug) contador_debug++; printf("Check %d.\n", contador_debug);
+
                 recargar(archivo, arbol1);
+                //debug
+                if(debug) contador_debug++; printf("Check %d.\n", contador_debug);
                 char etiqueta_arbol = etiqueta(arbol1);
+                //debug
+                if(debug) contador_debug++; printf("Check %d.\n", contador_debug);
                 //printf("%c", etiqueta_arbol);
                 break;
             }

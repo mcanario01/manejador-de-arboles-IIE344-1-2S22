@@ -1,5 +1,5 @@
-#ifndef LISTALA_STRUCT_H
-#define LISTALA_STRUCT_H
+#ifndef LISTA_LECTURA_ARBOL_STRUCT_H
+#define LISTA_LECTURA_ARBOL_STRUCT_H
 
 struct datosLA
 {
