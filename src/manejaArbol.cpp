@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <syscall.h>
 
+
 void recargar(FILE * archivo, Arbol &arbol)
 {
     //lectura de raiz
@@ -33,6 +34,7 @@ void recargar(FILE * archivo, Arbol &arbol)
         datosNodo.pos_herm_der = (int)strtol(aux1, 0, 10);
         inserta(datosNodo, fin(listaDeNodosArbol), listaDeNodosArbol);
     }
+    armarArbolSegunListaLA(arbol, listaDeNodosArbol);
 
 }
 
@@ -42,19 +44,14 @@ void armarArbolSegunListaLA(Arbol &arbol, ListaLA lista_de_arbol)
     for (int i = primero(lista_de_arbol); i < fin(lista_de_arbol); i = siguiente(i, lista_de_arbol))
     {
         //dato auxiliar
-        datosLA dato_aux = recupera(i, lista_de_arbol);
+        datosLA dato_aux_padre = recupera(i, lista_de_arbol);
+        datosLA dato_aux_hijo = recupera(dato_aux_hijo.pos_hijo_izq, lista_de_arbol);
+        datosLA dato_aux_herm_der = recupera(dato_aux_padre.pos_herm_der, lista_de_arbol);
+        Arbol arbol_aux_padre = creaRaiz(dato_aux_padre.etiqueta);
+        Arbol arbol_aux_hijo = creaRaiz(dato_aux_padre.etiqueta);
+        Arbol arbol_aux_herm_der = creaRaiz(dato_aux_herm_der.etiqueta);
 
-        printf("%d %c %d\n", dato_aux.pos_hijo_izq, dato_aux.etiqueta, dato_aux.pos_herm_der);
-
-        //construccion de arbol
-        for(int j = primero(lista_de_arbol); i < fin(lista_de_arbol); i = siguiente(i, lista_de_arbol))
-        {
-            if(dato_aux.pos_hijo_izq == j)
-            {
-                datosLA dato_aux_aux = recupera(j, lista_de_arbol);
-                Arbol arbol_aux = creaRaiz(dato_aux.etiqueta);
-                insertaHijoMasIzq(arbol, arbol_aux);
-            }
-        }
+        insertaHijoMasIzq(arbol_aux_padre, arbol_aux_hijo);
+        insertaHermanoDer(arbol_aux_padre, arbol_aux_herm_der);
     }
 }
